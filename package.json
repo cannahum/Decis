@@ -1,0 +1,46 @@
+{
+	"name": "Decis",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"watch": "npm run build -- -w",
+    "start:ios": "npm run build && concurrently -r 'npm run watch' 'react-native run-ios --simulator=\"iPhone 7\"'",
+		"start:android": "npm run build && concurrently -r 'npm run watch' 'react-native run-android'",
+		"tsc": "tsc",
+    "clean": "rimraf artifacts",
+		"build": "npm run clean && npm run tsc --",
+		"lint": "tslint src/**/*.ts",
+		"test": "jest --coverage"
+	},
+	"dependencies": {
+		"react": "16.0.0-alpha.12",
+		"react-native": "0.48.3"
+	},
+	"devDependencies": {
+		"@types/jest": "^20.0.8",
+		"@types/react": "^16.0.5",
+		"@types/react-native": "^0.48.6",
+		"babel-jest": "21.0.2",
+		"babel-preset-react-native": "4.0.0",
+		"concurrently": "^3.5.0",
+		"jest": "21.1.0",
+		"react-test-renderer": "16.0.0-alpha.12",
+		"rimraf": "^2.6.2",
+		"tslint": "^5.7.0",
+		"typescript": "^2.5.2"
+	},
+	"jest": {
+    "preset": "react-native",
+    "testRegex": "artifacts/.+\\.(test|spec).js$",
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text-summary",
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "artifacts/**/*.js",
+      "!artifacts/**/*.spec.js",
+      "!artifacts/**/*.index.js"
+    ]
+  }
+}
